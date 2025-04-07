@@ -56,3 +56,6 @@ Route::get('/test-email', function () {
 
     return 'Email sent successfully!';
 });
+
+Route::get('/content-generator', [ContentController::class, 'index']);
+Route::post('/generate-content', [ContentController::class, 'generateContent']);
