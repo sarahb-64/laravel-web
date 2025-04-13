@@ -8,19 +8,25 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
     public function index()
     {
-        $user = Auth::user();
-        $permissions = [
-            'can_view_dashboard' => $user->hasRole('admin'),
-            'can_manage_users' => $user->hasRole('admin'),
-            'can_manage_roles' => $user->hasRole('admin'),
-            'can_manage_settings' => $user->hasRole('admin'),
-        ];
+        $user = auth()->user();
+        
+        if (!$user) {
+            abort(401);
+        }
 
-        return Inertia::render('Dashboard', [
-            'permissions' => $permissions,
-            'user' => $user
+        $projects = $user->projects()->withCount('keywords')->get();
+        $keywords = $user->keywords()->latest()->take(10)->get();
+        
+        return Inertia::render('Seo/Dashboard', [
+            'projects' => $projects,
+            'keywords' => $keywords
         ]);
     }
 }

@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Landing;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+use App\Models\Landing\Skill;
+use App\Models\Landing\Service;
+use App\Models\Landing\Project;
 use Inertia\Inertia;
-use Illuminate\Foundation\Application;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Welcome', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
+        return Inertia::render('Landing/Home', [
+            'skills' => Skill::all(),
+            'services' => Service::all(),
+            'projects' => Project::latest()->take(6)->get()
         ]);
     }
 }
