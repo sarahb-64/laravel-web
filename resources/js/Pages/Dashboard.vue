@@ -1,11 +1,5 @@
 <template>
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
-        </template>
-
+    <AppLayout title="Dashboard">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -14,9 +8,9 @@
                         <div class="p-6">
                             <div class="flex items-center justify-between">
                                 <h3 class="text-lg font-medium text-gray-900">Proyectos</h3>
-                                <Link :href="route('projects.create')" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                                     Nuevo Proyecto
-                                </Link>
+                                </a>
                             </div>
                             
                             <div class="mt-4 space-y-4">
@@ -25,9 +19,9 @@
                                         <h4 class="font-medium text-gray-900">{{ project.name }}</h4>
                                         <p class="text-sm text-gray-500">{{ project.description }}</p>
                                     </div>
-                                    <Link :href="route('projects.show', project.id)" class="text-primary-600 hover:text-primary-900">
+                                    <a href="#" class="text-primary-600 hover:text-primary-900">
                                         Ver detalles
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -79,56 +73,52 @@
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </AppLayout>
 </template>
 
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 // Mock data - Replace with actual API calls
 const projects = [
     {
         id: 1,
-        name: 'Proyecto Uno',
-        description: 'Desarrollo de nueva aplicación web',
+        name: 'Proyecto 1',
+        description: 'Descripción del proyecto 1'
     },
     {
         id: 2,
-        name: 'Proyecto Dos',
-        description: 'Implementación de sistema de gestión',
-    },
+        name: 'Proyecto 2',
+        description: 'Descripción del proyecto 2'
+    }
 ];
 
 const tasks = [
     {
         id: 1,
-        title: 'Diseño de interfaz',
-        project: {
-            name: 'Proyecto Uno',
-        },
-        status: 'pending',
+        title: 'Tarea 1',
+        project: { id: 1, name: 'Proyecto 1' },
+        status: 'pending'
     },
     {
         id: 2,
-        title: 'Desarrollo backend',
-        project: {
-            name: 'Proyecto Uno',
-        },
-        status: 'in_progress',
-    },
+        title: 'Tarea 2',
+        project: { id: 2, name: 'Proyecto 2' },
+        status: 'in_progress'
+    }
 ];
 
 const activities = [
     {
         id: 1,
-        description: 'Nuevo proyecto creado',
-        created_at: 'Hace 2 horas',
+        description: 'Actividad 1 realizada',
+        created_at: 'Hace 1 hora'
     },
     {
         id: 2,
-        description: 'Tarea asignada a equipo',
-        created_at: 'Hace 3 horas',
-    },
+        description: 'Actividad 2 realizada',
+        created_at: 'Hace 2 horas'
+    }
 ];
 </script>

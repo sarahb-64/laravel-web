@@ -32,5 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view-project', function ($user, $project) {
             return $project->user_id === $user->id;
         });
+
+        Gate::policy(Project::class, ProjectPolicy::class);
     }
 }

@@ -32,11 +32,47 @@ El proyecto utiliza Laravel 11 como framework principal, con las siguientes cara
 ## 2. Estructura de Directorios
 
 ### 2.1 Componentes de la Landing Page
-app/ ├── Http/Controllers/ │ ├── Landing/ │ │ ├── HomeController.php │ │ ├── SkillsController.php │ │ └── ServicesController.php │ └── Pages/ ├── Models/ │ ├── Landing/ │ │ ├── Skill.php │ │ ├── Service.php │ │ └── Project.php └── Views/ └── landing/
+app/
+├── Http/
+│   └── Controllers/
+│       ├── Landing/
+│       │   ├── HomeController.php
+│       │   ├── SkillsController.php
+│       │   ├── ServicesController.php
+│       │   └── ContactController.php
+│       └── Pages/
+├── Models/
+│   └── Landing/
+│       ├── Skill.php
+│       ├── Service.php
+│       ├── Project.php
+│       └── ContactMessage.php
+└── Views/
+    └── landing/
+        ├── hero.blade.php
+        ├── about.blade.php
+        ├── skills.blade.php
+        ├── services.blade.php
+        ├── portfolio.blade.php
+        ├── contact.blade.php
+        └── layout.blade.php
 
 
 ### 2.2 Componentes de la Plataforma SEO
-app/ ├── Http/Controllers/ │ ├── Seo/ │ │ ├── DashboardController.php │ │ ├── KeywordAnalyzerController.php │ │ ├── RankTrackerController.php │ │ └── ProjectController.php │ └── Auth/ ├── Models/ │ ├── Seo/ │ │ ├── Project.php │ │ ├── Keyword.php │ │ └── Analysis.php └── Views/ └── seo/
+app/
+├── Http/Controllers/
+│   └── Seo/
+│       ├── DashboardController.php
+│       ├── RankTrackerController.php
+│       ├── BacklinkPriceController.php
+│       └── KeywordController.php
+├── Models/
+│   └── Seo/
+│       ├── RankResult.php
+│       ├── BacklinkPrice.php
+│       └── Keyword.php
+└── Views/
+    └── seo/
 
 
 ## 3. Base de Datos
@@ -54,6 +90,7 @@ app/ ├── Http/Controllers/ │ ├── Seo/ │ │ ├── DashboardC
 - keywords
 - analyses
 - rank_history
+- backlink_prices
 
 ## 4. Autenticación y Autorización
 
@@ -87,6 +124,8 @@ app/ ├── Http/Controllers/ │ ├── Seo/ │ │ ├── DashboardC
 - POST /projects - Crear proyecto
 - GET /projects/{id}/analyze - Análisis SEO
 - GET /keywords - Gestión de palabras clave
+- POST /backlink-prices - Agregar precio
+- GET /backlink-prices/compare - Comparar precios
 
 ## 7. Testing y Calidad
 
@@ -107,6 +146,7 @@ app/ ├── Http/Controllers/ │ ├── Seo/ │ │ ├── DashboardC
 - Claves API
 - Configuración de correo
 - Configuración de caché
+- Configuración DataForSEO
 
 ### 8.2 Cron Jobs
 - Actualización de rankings

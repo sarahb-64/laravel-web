@@ -29,4 +29,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function projects()
+    {
+        return $this->hasMany(\App\Models\Seo\Project::class);
+    }
+
+    public function keywords()
+    {
+        return $this->hasMany(\App\Models\Seo\Keyword::class);
+    }
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
+    }
+
+    public function hasPermissionTo($permission)
+    {
+        return $this->permissions()->where('name', $permission)->exists();
+    }
 }

@@ -13,4 +13,14 @@ class Keyword extends Model
         'description',
         'priority',
     ];
+
+    public function project()
+    {
+        return $this->belongsTo(\App\Models\Seo\Project::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

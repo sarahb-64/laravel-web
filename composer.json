@@ -16,7 +16,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.6",
         "spatie/laravel-permission": "^6.17",
-        "tightenco/ziggy": "^2.0"
+        "tightenco/ziggy": "^2.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
