@@ -16,6 +16,11 @@ use App\Http\Controllers\Seo\SeoDashboardController;
 use App\Http\Controllers\Seo\KeywordController;
 use App\Http\Controllers\Seo\SeoProjectController;
 use App\Http\Controllers\Seo\RankTrackerController;
+use App\Http\Controllers\AnswerThePublicController;
+use App\Http\Controllers\AbTestController;
+use App\Http\Controllers\Mail\MailGraderController;
+
+
 
 
 
@@ -42,6 +47,26 @@ Route::middleware(['auth'])->prefix('seo')->group(function () {
     Route::get('projects/{project}/history', [SeoProjectController::class, 'history'])->name('seo.projects.history');
     Route::post('projects/import', [SeoProjectController::class, 'import'])->name('seo.projects.import');
     Route::get('projects/export', [SeoProjectController::class, 'export'])->name('seo.projects.export');
+    
+    // Keywords Routes
+    Route::resource('keywords', KeywordController::class)
+        ->only(['index', 'store', 'show', 'destroy'])
+        ->names('seo.keywords');
+    Route::post('/keywords/dataforseo', [KeywordController::class, 'keywordData'])->name('seo.keywords.dataforseo');
+    Route::inertia('/seo/keywords/test', 'Seo/KeywordsTest')->middleware(['auth', 'verified']); //TEMPORAL
+
+    // RankTracker Routes
+    Route::get('/rank-tracker', [RankTrackerController::class, 'index'])->name('rank-tracker.index');
+    Route::post('/rank-tracker/store', [RankTrackerController::class, 'store'])->name('rank-tracker.store');
+    Route::get('/rank-tracker/history', [RankTrackerController::class, 'history'])->name('rank-tracker.history');
+
+    // Seo Analyzer
+    Route::post('analyze', [\App\Http\Controllers\Seo\SeoAnalyzerController::class, 'analyze'])->name('seo.analyze');
+    Route::get('analysis/{id}', [\App\Http\Controllers\Seo\SeoAnalyzerController::class, 'getStatus'])->name('seo.analysis.get');
+
+    // Ubersuggest
+    Route::get('ubersuggest', [UbersuggestController::class, 'index'])->name('seo.ubersuggest.index');
+    Route::post('ubersuggest/suggest', [UbersuggestController::class, 'suggestKeywords'])->name('seo.ubersuggest.suggest');
 });
 
 /// Rutas de autenticación
@@ -57,23 +82,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-});
-
-// SEO Routes
-Route::middleware(['auth'])->prefix('seo')->group(function () {
-
-    // Keywords Routes
-    Route::resource('keywords', KeywordController::class)
-    ->only(['index', 'store', 'show', 'destroy'])
-    ->names('seo.keywords');
-    Route::post('/keywords/dataforseo', [KeywordController::class, 'keywordData'])->name('seo.keywords.dataforseo');
-    Route::inertia('/seo/keywords/test', 'Seo/KeywordsTest')->middleware(['auth', 'verified']); //TEMPORAL
-    Route::get('/seo/dashboard', [SeoDashboardController::class, 'index'])->name('seo.dashboard');
-
-    // RankTracker Routes
-    Route::get('/rank-tracker', [RankTrackerController::class, 'index'])->name('rank-tracker.index');
-    Route::post('/rank-tracker/store', [RankTrackerController::class, 'store'])->name('rank-tracker.store');
-    Route::get('/rank-tracker/history', [RankTrackerController::class, 'history'])->name('rank-tracker.history');
 });
 
 // Project Management Routes
@@ -93,4 +101,35 @@ Route::middleware(['auth'])->prefix('seo')->group(function () {
         Route::post('/', [BacklinkPriceController::class, 'store'])->name('seo.backlink-prices.store');
         Route::get('compare', [BacklinkPriceController::class, 'compare'])->name('seo.backlink-prices.compare');
     });
+});
+
+// AnswerThePublic Interface
+Route::middleware(['auth'])->group(function () {
+    Route::get('/answer-the-public', [AnswerThePublicController::class, 'index'])->name('answer-the-public');
+    Route::post('/answer-the-public/suggestions', [AnswerThePublicController::class, 'getSuggestions'])->name('answer-the-public.suggestions');
+});
+
+// A/B Test Routes
+Route::middleware(['auth'])->prefix('ab-test')->group(function () {
+    Route::get('/', [AbTestController::class, 'index'])->name('ab-test.index');
+    Route::post('/calculate', [AbTestController::class, 'calculate'])->name('ab-test.calculate');
+});
+
+// Rutas de Ads
+Route::middleware(['auth', 'throttle.campaign'])->prefix('ads')->group(function () {
+    Route::post('/analyze', [AdsGraderController::class, 'analyze'])->name('ads.analyze');
+    Route::get('/history', [AdsGraderController::class, 'getHistory'])->name('ads.history');
+});
+
+// Ads Routes
+Route::middleware(['auth'])->prefix('ads')->group(function () {
+    Route::get('ads-grader', [\App\Http\Controllers\Ads\AdsGraderController::class, 'index'])->name('ads.ads-grader.index');
+    Route::post('ads-grader/analyze', [\App\Http\Controllers\Ads\AdsGraderController::class, 'analyze'])->name('ads.ads-grader.analyze');
+    Route::get('ads-grader/history', [\App\Http\Controllers\Ads\AdsGraderController::class, 'getAnalysisHistory'])->name('ads.ads-grader.history');
+});
+
+// Mail Routes
+Route::middleware(['auth'])->prefix('mail')->group(function () {
+    Route::get('/grader', [MailGraderController::class, 'index'])->name('mail.grader.index');
+    Route::post('/grader/analyze', [MailGraderController::class, 'analyzeCampaign'])->name('mail.grader.analyze');
 });

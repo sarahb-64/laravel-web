@@ -17,3 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Rutas SEO (sin middleware de autenticación)
+Route::prefix('seo')->group(function () {
+    // Análisis SEO
+    Route::post('/analyze', [\App\Http\Controllers\Seo\SeoAnalyzerController::class, 'analyze'])
+        ->name('seo.analyze');
+    
+    // Estado del análisis
+    Route::get('/analysis/{id}', [\App\Http\Controllers\Seo\SeoAnalyzerController::class, 'getStatus'])
+        ->name('seo.analysis.status');
+});
+
+// Rutas AnswerThePublic
+Route::prefix('answer-the-public')->group(function () {
+    Route::get('/suggestions', [AnswerThePublicController::class, 'getSuggestions']);
+});

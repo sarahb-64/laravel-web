@@ -7,6 +7,8 @@
     "require": {
         "php": "^8.1",
         "ext-mbstring": "*",
+        "facebook/graph-sdk": "^5.1",
+        "googleads/google-ads-php": "^26.2",
         "guzzlehttp/guzzle": "^7.9",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/fortify": "^1.25",
@@ -15,7 +17,9 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.6",
+        "mailchimp/marketing": "^3.0",
         "spatie/laravel-permission": "^6.17",
+        "symfony/dom-crawler": "^7.2",
         "tightenco/ziggy": "^2.5"
     },
     "require-dev": {
