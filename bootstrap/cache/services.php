@@ -34,14 +34,18 @@
     30 => 'Carbon\\Laravel\\ServiceProvider',
     31 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     32 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    33 => 'Spatie\\Permission\\PermissionServiceProvider',
-    34 => 'Tighten\\Ziggy\\ZiggyServiceProvider',
-    35 => 'App\\Providers\\AppServiceProvider',
-    36 => 'App\\Providers\\AuthServiceProvider',
-    37 => 'App\\Providers\\BroadcastServiceProvider',
-    38 => 'App\\Providers\\EventServiceProvider',
-    39 => 'App\\Providers\\RouteServiceProvider',
-    40 => 'App\\Providers\\EnvironmentServiceProvider',
+    33 => 'OpenAI\\Laravel\\ServiceProvider',
+    34 => 'Spatie\\Analytics\\AnalyticsServiceProvider',
+    35 => 'Spatie\\Backup\\BackupServiceProvider',
+    36 => 'Spatie\\Permission\\PermissionServiceProvider',
+    37 => 'Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider',
+    38 => 'Tighten\\Ziggy\\ZiggyServiceProvider',
+    39 => 'App\\Providers\\AppServiceProvider',
+    40 => 'App\\Providers\\AuthServiceProvider',
+    41 => 'App\\Providers\\BroadcastServiceProvider',
+    42 => 'App\\Providers\\EventServiceProvider',
+    43 => 'App\\Providers\\RouteServiceProvider',
+    44 => 'App\\Providers\\EnvironmentServiceProvider',
   ),
   'eager' => 
   array (
@@ -63,14 +67,17 @@
     15 => 'Carbon\\Laravel\\ServiceProvider',
     16 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     17 => 'Termwind\\Laravel\\TermwindServiceProvider',
-    18 => 'Spatie\\Permission\\PermissionServiceProvider',
-    19 => 'Tighten\\Ziggy\\ZiggyServiceProvider',
-    20 => 'App\\Providers\\AppServiceProvider',
-    21 => 'App\\Providers\\AuthServiceProvider',
-    22 => 'App\\Providers\\BroadcastServiceProvider',
-    23 => 'App\\Providers\\EventServiceProvider',
-    24 => 'App\\Providers\\RouteServiceProvider',
-    25 => 'App\\Providers\\EnvironmentServiceProvider',
+    18 => 'Spatie\\Analytics\\AnalyticsServiceProvider',
+    19 => 'Spatie\\Backup\\BackupServiceProvider',
+    20 => 'Spatie\\Permission\\PermissionServiceProvider',
+    21 => 'Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider',
+    22 => 'Tighten\\Ziggy\\ZiggyServiceProvider',
+    23 => 'App\\Providers\\AppServiceProvider',
+    24 => 'App\\Providers\\AuthServiceProvider',
+    25 => 'App\\Providers\\BroadcastServiceProvider',
+    26 => 'App\\Providers\\EventServiceProvider',
+    27 => 'App\\Providers\\RouteServiceProvider',
+    28 => 'App\\Providers\\EnvironmentServiceProvider',
   ),
   'deferred' => 
   array (
@@ -226,6 +233,9 @@
     'Laravel\\Sail\\Console\\InstallCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'Laravel\\Sail\\Console\\PublishCommand' => 'Laravel\\Sail\\SailServiceProvider',
     'command.tinker' => 'Laravel\\Tinker\\TinkerServiceProvider',
+    'OpenAI\\Client' => 'OpenAI\\Laravel\\ServiceProvider',
+    'OpenAI\\Contracts\\ClientContract' => 'OpenAI\\Laravel\\ServiceProvider',
+    'openai' => 'OpenAI\\Laravel\\ServiceProvider',
   ),
   'when' => 
   array (
@@ -272,6 +282,9 @@
     array (
     ),
     'Laravel\\Tinker\\TinkerServiceProvider' => 
+    array (
+    ),
+    'OpenAI\\Laravel\\ServiceProvider' => 
     array (
     ),
   ),

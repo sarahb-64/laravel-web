@@ -5,10 +5,7 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
     plugins: [
         laravel({
-            input: [
-                'resources/css/app.css',
-                'resources/js/app.js'
-            ],
+            input: 'resources/js/app.js',
             refresh: true,
         }),
         vue({
@@ -20,22 +17,19 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        hmr: {
+            host: 'localhost',
+            port: 5173
+        },
+        watch: {
+            usePolling: true,
+            interval: 100
+        }
+    },
     resolve: {
         alias: {
             '@': '/resources/js',
         },
-    },
-    build: {
-        rollupOptions: {
-            input: {
-                main: 'resources/js/app.js',
-                welcome: 'resources/js/Pages/Welcome.vue',
-            },
-            output: {
-                chunkFileNames: 'assets/[name]-[hash].js',
-                entryFileNames: 'assets/[name]-[hash].js',
-                assetFileNames: 'assets/[name]-[hash].[ext]'
-            }
-        },
-    },
+    }
 });

@@ -1,0 +1,154 @@
+body {
+  width: 350px;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+.container {
+  padding: 15px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.header h1 {
+  font-size: 18px;
+  margin: 0 0 5px 0;
+  color: #2c3e50;
+}
+
+.header p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 13px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5da;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #3a5bd9;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border-left-color: #4a6cf7;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.meta-tags {
+  margin-top: 20px;
+}
+
+.meta-tag {
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.meta-tag h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.meta-tag p {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.meta-tag .value {
+  font-weight: 600;
+  color: #2c3e50;
+  word-break: break-all;
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #fde8e8;
+  border-radius: 4px;
+  display: none;
+}
+
+.success {
+  color: #27ae60;
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #e8f8f0;
+  border-radius: 4px;
+  display: none;
+}
+
+.current-url {
+  font-size: 13px;
+  color: #7f8c8d;
+  margin-bottom: 15px;
+  word-break: break-all;
+  padding: 8px;
+  background-color: #f0f4f8;
+  border-radius: 4px;
+}

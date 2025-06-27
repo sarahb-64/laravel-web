@@ -4,16 +4,21 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Team;
+use App\Policies\TeamPolicy;
+use App\Models\Project;
+use App\Policies\ProjectPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
     /**
      * The policy mappings for the application.
      *
-     * @var array<class-string, class-string>
+     * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Team::class => TeamPolicy::class,
+        Project::class => ProjectPolicy::class,
     ];
 
     /**
@@ -32,7 +37,5 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view-project', function ($user, $project) {
             return $project->user_id === $user->id;
         });
-
-        Gate::policy(Project::class, ProjectPolicy::class);
     }
 }

@@ -1,66 +1,30 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Crear Nuevo Proyecto') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-<div class="container mx-auto px-4 py-8">
-    <div class="max-w-2xl mx-auto">
-        <h1 class="text-2xl font-bold text-gray-800 mb-6">Crear Nuevo Proyecto</h1>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <form action="{{ route('projects.store') }}" method="POST">
+                        @csrf
+                        
+                        @include('projects._form', ['project' => new \App\Models\Project()])
 
-        <form action="{{ route('projects.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            @csrf
-
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                    Nombre
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('name') border-red-500 @enderror"
-                       id="name" type="text" name="name" value="{{ old('name') }}" required>
-                @error('name')
-                    <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
-                @enderror
+                        <div class="mt-6 flex justify-end">
+                            <a href="{{ route('projects.index') }}" class="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded mr-2">
+                                Cancelar
+                            </a>
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Guardar Proyecto
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
-                    Descripción
-                </label>
-                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('description') border-red-500 @enderror"
-                          id="description" name="description" rows="3">{{ old('description') }}</textarea>
-                @error('description')
-                    <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="start_date">
-                    Fecha de Inicio
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('start_date') border-red-500 @enderror"
-                       id="start_date" type="date" name="start_date" value="{{ old('start_date') }}" required>
-                @error('start_date')
-                    <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="end_date">
-                    Fecha de Fin
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('end_date') border-red-500 @enderror"
-                       id="end_date" type="date" name="end_date" value="{{ old('end_date') }}">
-                @error('end_date')
-                    <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                    Crear Proyecto
-                </button>
-                <a href="{{ route('projects.index') }}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                    Cancelar
-                </a>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-@endsection
+</x-app-layout>

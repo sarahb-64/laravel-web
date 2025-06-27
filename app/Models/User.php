@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles;
 
     protected $fillable = [
         'name',
@@ -24,6 +24,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     protected $casts = [
@@ -38,6 +40,16 @@ class User extends Authenticatable
     public function keywords()
     {
         return $this->hasMany(\App\Models\Seo\Keyword::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(\App\Models\Task::class);
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(\App\Models\Activity::class);
     }
 
     public function hasRole($role)

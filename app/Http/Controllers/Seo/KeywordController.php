@@ -19,15 +19,20 @@ class KeywordController extends Controller
 
     public function index()
     {
-        $keywords = Keyword::where('user_id', Auth::id())
-            ->with(['rankResults' => function($query) {
-                $query->orderBy('created_at', 'desc');
-            }])
-            ->get();
-
-        return inertia('Seo/Keywords/Index', [
-            'keywords' => $keywords
-        ]);
+        try {
+            $keywords = auth()->user()
+                ->keywords()
+                ->select(['id', 'term', 'volume', 'difficulty', 'created_at'])
+                ->latest()
+                ->paginate(10);
+    
+            return Inertia::render('Seo/Keywords/Index', [
+                'keywords' => $keywords
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Error in KeywordController@index: ' . $e->getMessage());
+            return back()->with('error', 'Error loading keywords. Please try again.');
+        }
     }
 
     public function store(Request $request, DataForSEOService $dataForSEO)

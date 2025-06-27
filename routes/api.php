@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Seo\SeoAnalysisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,9 @@ Route::prefix('seo')->group(function () {
 // Rutas AnswerThePublic
 Route::prefix('answer-the-public')->group(function () {
     Route::get('/suggestions', [AnswerThePublicController::class, 'getSuggestions']);
+});
+
+// Rutas API
+Route::middleware('api')->group(function () {
+    Route::post('/seo/analyze', [SeoAnalysisController::class, 'analyzeMetaTags']);
 });

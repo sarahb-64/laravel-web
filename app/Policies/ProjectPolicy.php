@@ -2,42 +2,67 @@
 
 namespace App\Policies;
 
-use App\Models\User;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProjectPolicy
 {
     use HandlesAuthorization;
 
-    public function manageProjects(User $user)
+    /**
+     * Determine whether the user can view any models.
+     */
+    public function viewAny(User $user): bool
     {
-        // Verifica si el usuario tiene el rol de admin
-        return $user->hasRole('admin');
+        return true;
     }
 
-    public function viewAny(User $user)
+    /**
+     * Determine whether the user can view the model.
+     */
+    public function view(User $user, Project $project): bool
     {
-        return $user->hasRole('admin') || $user->hasPermissionTo('view-projects');
+        return $user->id === $project->user_id;
     }
 
-    public function view(User $user, Project $project)
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(User $user): bool
     {
-        return $user->hasRole('admin') || $project->user_id === $user->id;
+        return true;
     }
 
-    public function create(User $user)
+    /**
+     * Determine whether the user can update the model.
+     */
+    public function update(User $user, Project $project): bool
     {
-        return $user->hasRole('admin') || $user->hasPermissionTo('create-projects');
+        return $user->id === $project->user_id;
     }
 
-    public function update(User $user, Project $project)
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function delete(User $user, Project $project): bool
     {
-        return $user->hasRole('admin') || $project->user_id === $user->id;
+        return $user->id === $project->user_id;
     }
 
-    public function delete(User $user, Project $project)
+    /**
+     * Determine whether the user can restore the model.
+     */
+    public function restore(User $user, Project $project): bool
     {
-        return $user->hasRole('admin') || $project->user_id === $user->id;
+        return $user->id === $project->user_id;
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDelete(User $user, Project $project): bool
+    {
+        return $user->id === $project->user_id;
     }
 }

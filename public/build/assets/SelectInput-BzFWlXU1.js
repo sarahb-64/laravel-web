@@ -1,1 +1,0 @@
-import{_ as s}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{d as t,o as r,p as o,D as a}from"./welcome-C2ucf9y6.js";const c={inheritAttrs:!1};function n(e,p,l,f,m,i){return r(),t("select",a(e.$attrs,{class:"form-select"}),[o(e.$slots,"default")],16)}const $=s(c,[["render",n]]);export{$ as S};

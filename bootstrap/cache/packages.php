@@ -80,11 +80,47 @@
       0 => 'Termwind\\Laravel\\TermwindServiceProvider',
     ),
   ),
+  'openai-php/laravel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'OpenAI\\Laravel\\ServiceProvider',
+    ),
+  ),
+  'spatie/laravel-analytics' => 
+  array (
+    'aliases' => 
+    array (
+      'Analytics' => 'Spatie\\Analytics\\Facades\\Analytics',
+    ),
+    'providers' => 
+    array (
+      0 => 'Spatie\\Analytics\\AnalyticsServiceProvider',
+    ),
+  ),
+  'spatie/laravel-backup' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Backup\\BackupServiceProvider',
+    ),
+  ),
   'spatie/laravel-permission' => 
   array (
     'providers' => 
     array (
       0 => 'Spatie\\Permission\\PermissionServiceProvider',
+    ),
+  ),
+  'spatie/laravel-signal-aware-command' => 
+  array (
+    'aliases' => 
+    array (
+      'Signal' => 'Spatie\\SignalAwareCommand\\Facades\\Signal',
+    ),
+    'providers' => 
+    array (
+      0 => 'Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider',
     ),
   ),
   'tightenco/ziggy' => 

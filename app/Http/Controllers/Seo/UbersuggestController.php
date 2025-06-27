@@ -8,44 +8,37 @@ use Illuminate\Support\Facades\Http;
 
 class UbersuggestController extends Controller
 {
-    private $apiEndpoint = 'https://api.dataforseo.com/v3/seo';
-    
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        return Inertia::render('Seo/Ubersuggest/Index');
+        return view('seo.ubersuggest.index');
     }
 
     public function suggestKeywords(Request $request)
     {
         $request->validate([
             'keyword' => 'required|string|max:255',
-            'location' => 'required|string',
-            'language' => 'required|string'
         ]);
 
         try {
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . config('services.dataforseo.api_key')
-            ])->post($this->apiEndpoint . '/keyword_suggestions', [
-                'keyword' => $request->keyword,
-                'location' => $request->location,
-                'language' => $request->language
+            // Here you would typically make an API call to Ubersuggest
+            // For now, we'll return a mock response
+            $suggestions = [
+                $request->keyword . ' tips',
+                'best ' . $request->keyword,
+                'how to ' . $request->keyword,
+                $request->keyword . ' guide',
+                $request->keyword . ' tutorial',
+            ];
+
+            return response()->json([
+                'success' => true,
+                'data' => $suggestions
             ]);
 
-            if ($response->successful()) {
-                return response()->json($response->json());
-            }
-
-            throw new \Exception('Failed to get keyword suggestions');
         } catch (\Exception $e) {
             return response()->json([
-                'error' => 'Failed to fetch keyword suggestions',
-                'message' => $e->getMessage()
+                'success' => false,
+                'message' => 'Error fetching keyword suggestions: ' . $e->getMessage()
             ], 500);
         }
     }

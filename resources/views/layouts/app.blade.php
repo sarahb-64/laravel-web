@@ -39,5 +39,7 @@
             @yield('content')  <!-- Esto permitirá que la vista 'search' renderice su contenido aquí -->
             </main>
         </div>
+    @livewireScripts
+    @stack('scripts')
     </body>
 </html>

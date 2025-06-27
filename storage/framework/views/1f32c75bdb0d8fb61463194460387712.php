@@ -41,6 +41,9 @@
             <?php echo $__env->yieldContent('content'); ?>  <!-- Esto permitirá que la vista 'search' renderice su contenido aquí -->
             </main>
         </div>
+    <?php echo \Livewire\Mechanisms\FrontendAssets\FrontendAssets::scripts(); ?>
+
+    <?php echo $__env->yieldPushContent('scripts'); ?>
     </body>
 </html>
 <?php /**PATH C:\Users\sarah\OneDrive\Escritorio\Practicas APPYWEB\Laravel Project\laravel-web\resources\views/layouts/app.blade.php ENDPATH**/ ?>
